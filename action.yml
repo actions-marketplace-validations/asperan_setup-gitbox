@@ -1,0 +1,16 @@
+name: 'setup-gitbox'
+description: 'Install gitbox with cargo'
+author: Alex Speranza
+
+inputs:
+  gitbox-version:
+    description: "The version of gitbox to install. If not present, the default one is installed."
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - uses: dtolnay/rust-toolchain@1.72.0
+    - run: cargo install gitbox --version "${{ inputs.gitbox-version || '*' }}"
+      shell: bash
+
